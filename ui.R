@@ -7,6 +7,14 @@
 #    http://shiny.rstudio.com/
 #
 
+#manually declare objects for flash dash
+current_month <- "AVRIL 2023"
+district_incidence <- 8000
+district_cases <- 15000
+year_comparison <- paste("+150%")
+csb_rupture <- 2
+
+
 #declare pacakges
 require(shiny)
 require(shinyWidgets)
@@ -83,27 +91,27 @@ tagList(
           ## landing page with highlights ---------
           tabItem(tabName = "flash_dash",
                   fluidRow(
-                    valueBox(value = "PREDICTONS JANVIER 2021",
+                    valueBox(value = paste("PREDICTIONS", current_month),
                              color = "black",
                              subtitle = "",
                              width = 12),
                     #these will eventually need to update automatically every month
-                    valueBox(value = 8000,
+                    valueBox(value = district_incidence,
                              subtitle = "cas pour 100k",
                              color = "purple",
                              icon = icon("person-rays", lib = "font-awesome"),
                              width = 3),
-                    valueBox(value = 15000,
+                    valueBox(value = district_cases,
                              subtitle = "cas totals prédit",
                              color = "aqua",
                              icon = icon("person-burst", lib = "font-awesome"),
                              width = 3),
-                    valueBox(value = "+140%",
+                    valueBox(value = year_comparison,
                              subtitle = "comparé à l'année passée",
                              color = "red",
                              icon = icon("chart-line", lib = "font-awesome"),
                              width = 3),
-                    valueBox(value = "4 CSB",
+                    valueBox(value = paste(csb_rupture, "CSB"),
                              subtitle = "au risque du rupture du stock",
                              color = "teal",
                              icon = icon("pills", lib = "font-awesome"),
