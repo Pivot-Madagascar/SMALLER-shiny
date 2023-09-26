@@ -14,6 +14,15 @@ district_cases <- 15000
 year_comparison <- paste("+150%")
 csb_rupture <- 2
 
+#flash dash from dynamic output
+flash_list <- readRDS("data/dynamic/flash-alerts.rds")
+#update year comparison
+if(flash_list$compare_ratio>=100){
+  year_comparison <- paste0("+", flash_list$compare_ratio-100, "%")
+} else {
+  year_comparison <- paste0("-", 100-flash_list$compare_ratio, "%")
+}
+
 
 #declare pacakges
 require(shiny)
@@ -91,17 +100,17 @@ tagList(
           ## landing page with highlights ---------
           tabItem(tabName = "flash_dash",
                   fluidRow(
-                    valueBox(value = paste("PREDICTIONS", current_month),
-                             color = "black",
-                             subtitle = "",
-                             width = 12),
+                    h1(flash_list$header, style = "font-size:38px; color:#008d4c; font-variant:small-caps; text-align:end; font-family: sans-serif;"),
+                    hr(),
+                  ),
+                  fluidRow(
                     #these will eventually need to update automatically every month
-                    valueBox(value = district_incidence,
+                    valueBox(value =  flash_list$flash_inc,
                              subtitle = "cas pour 100k",
                              color = "purple",
                              icon = icon("person-rays", lib = "font-awesome"),
                              width = 3),
-                    valueBox(value = district_cases,
+                    valueBox(value = flash_list$flash_case,
                              subtitle = "cas totals prédit",
                              color = "aqua",
                              icon = icon("person-burst", lib = "font-awesome"),
@@ -111,8 +120,8 @@ tagList(
                              color = "red",
                              icon = icon("chart-line", lib = "font-awesome"),
                              width = 3),
-                    valueBox(value = paste(csb_rupture, "CSB"),
-                             subtitle = "au risque du rupture du stock",
+                    valueBox(value = paste(flash_list$stock_alert_numCSB, "CSB"),
+                             subtitle = "à risque du rupture du stock",
                              color = "teal",
                              icon = icon("pills", lib = "font-awesome"),
                              width = 3)
