@@ -7,15 +7,10 @@
 #    http://shiny.rstudio.com/
 #
 
-#manually declare objects for flash dash
-current_month <- "AVRIL 2023"
-district_incidence <- 8000
-district_cases <- 15000
-year_comparison <- paste("+150%")
-csb_rupture <- 2
-
 #flash dash from dynamic output
 flash_list <- readRDS("data/dynamic/flash-alerts.rds")
+#set new end date [should be provided as an object from backend]
+new_end <- readRDS("data/dynamic/new_end.rds")
 #update year comparison
 if(flash_list$compare_ratio>=100){
   year_comparison <- paste0("+", flash_list$compare_ratio-100, "%")
@@ -52,8 +47,8 @@ tagList(
       
       # HEADER -----------------------------------------
       header = dashboardHeader(
-                               title = "SMALLER: Prédire le palu dans le district d'Ifanadiana",
-                               titleWidth = 550,
+                               title = "SMALLER: Prédire le paludisme dans le district d'Ifanadiana",
+                               titleWidth = 600,
                                tags$li(a(href = "https://sante.gov.mg",
                                          img(src = "msanp-logo.jpg",
                                              height = "30px"),
@@ -72,7 +67,9 @@ tagList(
       
       # SIDEBAR -------------------------------------
       sidebar = dashboardSidebar(width = 250,
+                                 minified = FALSE,
                                  sidebarMenu(
+                                   # style = "position: fixed;",
                                    menuItem("Palu en Bref", icon = icon("gauge", lib = 'font-awesome'),
                                             tabName = "flash_dash"),
                                    menuItem("Santé\nCommunautaire", icon = icon('people-roof', lib = "font-awesome"),
@@ -93,6 +90,9 @@ tagList(
         tags$head(tags$style(HTML('
                   .content-wrapper {
                     background-color: #fff;
+                  };
+                  .small-box {
+                  height: 80px
                   }
                 '
         ))),
@@ -104,29 +104,56 @@ tagList(
                     hr(),
                   ),
                   fluidRow(
-                    #these will eventually need to update automatically every month
-                    valueBox(value =  flash_list$flash_inc,
-                             subtitle = "cas pour 100k",
-                             color = "purple",
-                             icon = icon("person-rays", lib = "font-awesome"),
-                             width = 3),
-                    valueBox(value = flash_list$flash_case,
-                             subtitle = "cas totals prédit",
-                             color = "aqua",
-                             icon = icon("person-burst", lib = "font-awesome"),
-                             width = 3),
-                    valueBox(value = year_comparison,
-                             subtitle = "comparé à l'année passée",
-                             color = "red",
-                             icon = icon("chart-line", lib = "font-awesome"),
-                             width = 3),
-                    valueBox(value = paste(flash_list$stock_alert_numCSB, "CSB"),
-                             subtitle = "à risque du rupture du stock",
-                             color = "teal",
-                             icon = icon("pills", lib = "font-awesome"),
-                             width = 3)
-                  ),
-                  mod_landing_map_ui("land_map")
+                    column(width = 2, 
+                            fluidRow(
+                              valueBox(value =  flash_list$flash_inc,
+                                       subtitle = "cas pour 100k",
+                                       color = "purple",
+                                       icon = icon("person-rays", lib = "font-awesome"),
+                                       width = 12)
+                            ),
+                            fluidRow(
+                              valueBox(value = flash_list$flash_case,
+                                       subtitle = "cas totals prédit",
+                                       color = "aqua",
+                                       icon = icon("person-burst", lib = "font-awesome"),
+                                       width = 12)
+                            ),
+                            fluidRow(
+                              valueBox(value = year_comparison,
+                                       subtitle = "comparé à l'année passée",
+                                       color = "red",
+                                       icon = icon("chart-line", lib = "font-awesome"),
+                                       width = 12)
+                            ),
+                            fluidRow(
+                              valueBox(value = paste(flash_list$stock_alert_numCSB, "CSB"),
+                                       subtitle = "à risque du rupture du stock",
+                                       color = "teal",
+                                       icon = icon("pills", lib = "font-awesome"),
+                                       width = 12)
+                            ),
+                           fluidRow(
+                             #add info to fill out rest of screen
+                           )
+                    ), #end column 1
+          ## ----landing page map ------------------#########
+                    column(width = 10,
+          
+                           mod_landing_map_ui("land_map"),
+                           mod_map_panel_ui("land_map")
+                           )
+                  ) #end fluidRow
+                   
+                  
+                  
+
+                  #   absolutePanel(class = "panel panel-default", fixed = TRUE, draggable = TRUE, 
+                  #               top = "auto", left = "auto", right = 40, bottom = 60,
+                  #               width = 300, height = "auto",
+                  #               
+                  #               h2("Select a fokontany"))
+                  # )
           ), #end landing page tab
           ## community health tab -------------
           tabItem(tabName = "comm_time",

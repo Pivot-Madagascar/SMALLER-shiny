@@ -65,7 +65,7 @@ mod_sante_comm_server <- function(id){
                                                 fktSelect = "Ranomafana",
                                                 indicator = "case"))
 
-    table_data <- readRDS("data/for-app/inc-fokontany.rds") |>
+    table_data <- readRDS("data/dynamic/inc-fokontany.rds") |>
       tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") |>
       filter(commune %in% toupper("Ranomafana") & fokontany %in% toupper("Ranomafana")) |>
       select(commune, fokontany, date, starts_with("case")) %>%

@@ -18,13 +18,13 @@ timeseries_comm <- function(communeSelect,
                               indicator = "inc"){
   # to debug
   # communeSelect = "Ifanadiana"
-  # fktSelect = "Ifanadiana
+  # fktSelect = "Ifanadiana"
   # indicator = "inc"
 
   #create plot title and dataset subset
     p.title <- paste0(stringr::str_to_title(communeSelect), ": ",
                       stringr::str_to_title(fktSelect))
-    plot_data <- readRDS("data/for-app/inc-fokontany.rds") %>%
+    plot_data <- readRDS("data/dynamic/inc-fokontany.rds") %>%
       filter(comm_fkt %in% toupper(paste(communeSelect, fktSelect, sep = "_")))
 
   #select columns for each indicator
@@ -48,11 +48,20 @@ timeseries_comm <- function(communeSelect,
     mutate(season = gsub("/", "_", paste("Season", stringr::str_trim(season), sep = "_"))) |>
     tidyr::pivot_wider(names_from = season, values_from = y_med)
   plotly_cis <- plot_data |>
-    filter(season == "Present")
+    filter(season == "Saison en cours")
+  
+  #create key for past seasons
+  season_labels <- data.frame(season_col = colnames(plotly_data)[2:5])|>
+    mutate(season_label = gsub("Season_","",season_col)) |>
+    mutate(season_label = gsub("_", "/", season_label)) |>
+    pull(season_label)
+  
+  #rename columns so it can be used in the function
+  colnames(plotly_data) <- c("month_lab", "hist3", "hist2", "hist1", "current")
 
   source("R/utils_plotlyTime.R") #functions for plotting
   plotly_timeseries(input_data = plotly_data, ci_data = plotly_cis,
-                    ylabel = y_lab, ptitle = p.title)
+                    ylabel = y_lab, ptitle = p.title, season_labels = season_labels)
 
   # cat(file=stderr(), "ran plotly function")
 }

@@ -38,7 +38,7 @@ mod_stock_act_server <- function(id){
     validate(
       need(input$csbSelect != "", "Choisir au moins un CSB")
     )
-    readRDS("data/for-app/stockout-plot-data.rds") %>%
+    readRDS("data/dynamic/stockout.rds") %>%
       dplyr::filter(CSB %in% toupper(input$csbSelect))
   })
 
@@ -66,3 +66,5 @@ stock_bar_demo <- function(){
   }
   shinyApp(ui, server)
 }
+
+stock_bar_demo()

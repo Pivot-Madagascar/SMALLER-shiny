@@ -7,26 +7,26 @@
 #'
 #' @import plotly
 #'
-plotly_timeseries <- function(input_data, ci_data, ylabel, ptitle){
+plotly_timeseries <- function(input_data, ci_data, ylabel, ptitle, season_labels){
 
   color.scale <- c("#682D63", "#414288", "#5FB49C", "black")
   size <- c(1, 1, 1, 2)
 
   plot_ly(input_data, showlegend = TRUE) |>
-    add_trace(x = ~month_lab, y = ~Season_2017_2018, type = 'scatter', mode = 'lines',
-              name = "2017/2018", line = list(color = color.scale[1])) |>
+    add_trace(x = ~month_lab, y = ~hist3, type = 'scatter', mode = 'lines',
+              name = season_labels[1], line = list(color = color.scale[1])) |>
     #add lines for each year
-    add_trace(x = ~month_lab, y = ~Season_2018_2019, type = 'scatter', mode = 'lines',
-              name = "2018/2019", line = list(color = color.scale[2])) |>
-    add_trace(x = ~month_lab, y = ~Season_2019_2020, type = 'scatter', mode = 'lines',
-              name = "2019/2020", line = list(color = color.scale[3])) |>
-    add_trace(x = ~month_lab, y = ~Season_Present, type = 'scatter', mode = 'lines',
-              name = "2020/2021", line = list(color = color.scale[4], width = 4)) |>
+    add_trace(x = ~month_lab, y = ~hist2, type = 'scatter', mode = 'lines',
+              name = season_labels[2], line = list(color = color.scale[2])) |>
+    add_trace(x = ~month_lab, y = ~hist1, type = 'scatter', mode = 'lines',
+              name = season_labels[3], line = list(color = color.scale[3])) |>
+    add_trace(x = ~month_lab, y = ~current, type = 'scatter', mode = 'lines',
+              name = season_labels[4], line = list(color = color.scale[4], width = 4)) |>
     #add error range
     add_ribbons(data = ci_data, x = ~month_lab, ymin = ~y_lowCI, ymax = ~y_uppCI,
                 fillcolor = scales::alpha(color.scale[4],0.2), hoverinfo = 'none',
                 line = list(color = scales::alpha(color.scale[4],0.2)),
-                name = 'Evéntail') |>
+                name = '95% Intervalle\nde Confiance') |>
     #add vertical line for prediction area
     layout(shapes = list(vline(x = 8))) |>
     layout(hovermode = "x unified",
