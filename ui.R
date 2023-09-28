@@ -72,11 +72,15 @@ tagList(
                                    # style = "position: fixed;",
                                    menuItem("Palu en Bref", icon = icon("gauge", lib = 'font-awesome'),
                                             tabName = "flash_dash"),
-                                   menuItem("Santé\nCommunautaire", icon = icon('people-roof', lib = "font-awesome"),
-                                            menuSubItem("Taux aux Fokontany", tabName = "comm_time")),
-                                   menuItem("Santé Primaire", icon = icon("hospital", lib = "font-awesome"),
-                                            menuSubItem("Taux aux Communes", tabName = "commune_time"),
-                                            menuSubItem("Ruptures du Stock", tabName = "stock_csb2")),
+                                   menuItem("Tableau de Données", icon = icon("table", lib = "font-awesome"),
+                                            tabName = "fokontany_table"),
+                                   # menuItem("Santé\nCommunautaire", icon = icon('people-roof', lib = "font-awesome"),
+                                   #          menuSubItem("Taux aux Fokontany", tabName = "comm_time")),
+                                   # menuItem("Santé Primaire", icon = icon("hospital", lib = "font-awesome"),
+                                   #          menuSubItem("Taux aux Communes", tabName = "commune_time"),
+                                   #          menuSubItem("Ruptures du Stock", tabName = "stock_csb2")),
+                                   menuItem("Ruptures de Stock", tabName = "stock_csb2",
+                                            icon = icon("hospital", lib = "font-awesome")),
                                    menuItem("À propos", icon = icon("circle-info", lib = "font-awesome"),
                                             menuSubItem("L'application", tabName = "about"),
                                             menuSubItem("Le modèle", tabName = "model_info"))
@@ -155,22 +159,25 @@ tagList(
                   #               h2("Select a fokontany"))
                   # )
           ), #end landing page tab
+          ## Data Table Tab ---------------------
+          tabItem(tabName = "fokontany_table",
+                  mod_data_explore_ui("fokontany_table")),
           ## community health tab -------------
-          tabItem(tabName = "comm_time",
-                  #intro and instructions
-                  fluidRow(box(status = "info",
-                               title = "Séries Temporels au Niveau Communautaire",
-                               includeMarkdown("assets/community-time.md"),
-                               width = 12)),
-                  #sante communautaire UI
-                  mod_sante_comm_ui("comm1")),
+          # tabItem(tabName = "comm_time",
+          #         #intro and instructions
+          #         fluidRow(box(status = "info",
+          #                      title = "Séries Temporels au Niveau Communautaire",
+          #                      includeMarkdown("assets/community-time.md"),
+          #                      width = 12)),
+          #         #sante communautaire UI
+          #         mod_sante_comm_ui("comm1")),
           ## commune time series tab -----------
-          tabItem(tabName = "commune_time",
-                  fluidRow(box(status = "info",
-                               title = "Séries Temporels au Niveau Commune",
-                               includeMarkdown("assets/commune-time.md"),
-                               width = 12)),
-                  mod_sante_primaire_ui("commune")),
+          # tabItem(tabName = "commune_time",
+          #         fluidRow(box(status = "info",
+          #                      title = "Séries Temporels au Niveau Commune",
+          #                      includeMarkdown("assets/commune-time.md"),
+          #                      width = 12)),
+          #         mod_sante_primaire_ui("commune")),
           
           ## stockout tab ------------------
           tabItem(tabName = "stock_csb2",
