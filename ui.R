@@ -164,6 +164,8 @@ tagList(
                   fluidRow(box(status = "info",
                                title = "Risque du Rupture du Stock aux CSBs",
                                includeMarkdown("assets/stock-act-csb2.md"),
+                               collapsible = TRUE,
+                               collapsed = TRUE,
                                width = 12)),
                   #bar chart of ACTs
                   mod_stock_act_ui("act1")),
