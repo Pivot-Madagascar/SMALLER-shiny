@@ -65,12 +65,12 @@ mod_sante_comm_server <- function(id){
                                                 fktSelect = "Ranomafana",
                                                 indicator = "case"))
 
-    table_data <- readRDS("data/dynamic/inc-fokontany.rds") |>
-      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") |>
-      filter(commune %in% toupper("Ranomafana") & fokontany %in% toupper("Ranomafana")) |>
+    table_data <- readRDS("data/dynamic/inc-fokontany.rds") %>%
+      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") %>%
+      filter(commune %in% toupper("Ranomafana") & fokontany %in% toupper("Ranomafana")) %>%
       select(commune, fokontany, date, starts_with("case")) %>%
       #format to have it make more sense
-      select(-ends_with("true")) |>
+      select(-ends_with("true")) %>%
       mutate_at(vars(starts_with("case")), ~floor(.))
     colnames(table_data) <- c("Commune", "Fokontany", "Date", "Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale")
 
@@ -95,12 +95,12 @@ mod_sante_comm_server <- function(id){
 
 
 
-    table_data <- readRDS("data/for-app/inc-fokontany.rds") |>
-      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") |>
-      filter(commune %in% toupper(this_commune) & fokontany %in% toupper(this_fokontany)) |>
+    table_data <- readRDS("data/for-app/inc-fokontany.rds") %>%
+      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") %>%
+      filter(commune %in% toupper(this_commune) & fokontany %in% toupper(this_fokontany)) %>%
       select(commune, fokontany, date, starts_with(this_indicator)) %>%
       #format to have it make more sense
-      select(-ends_with("true")) |>
+      select(-ends_with("true")) %>%
       mutate_at(vars(starts_with(this_indicator)), ~floor(.))
     colnames(table_data) <- c("Commune", "Fokontany", "Date", "Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale")
 

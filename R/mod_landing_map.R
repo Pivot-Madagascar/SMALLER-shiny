@@ -27,15 +27,17 @@ mod_landing_map_ui <- function(id){
 #'
 #' @importFrom shiny NS tagList
 #' @importFrom leaflet leafletOutput renderLeaflet
+#' @importFrom plotly plotlyOutput
+#' 
 mod_map_panel_ui <-function(id){
   ns <- NS(id)
   
-  #conditional panel is still kind of broekn, could change to a phrase asking to click
+  #conditional panel is still kind of broken, could change to a phrase asking to click
   conditionalPanel(condition = "input.map_shape_click", ns = ns,
                    absolutePanel(
                 draggable = TRUE, fixed = FALSE,
                 top = "10vh", left = "20vw", right = "auto", bottom = "auto",
-                width = "auto", height = "auto",
+                width = "auto", height = "38vh",
                 style = "background-color: white;
                          opacity: 0.85;
                          padding: 20px 20px 20px 20px;
@@ -45,7 +47,7 @@ mod_map_panel_ui <-function(id){
                          padding-top: 1mm;",
                 
                 
-                  plotlyOutput(ns("time_plot"), width = "30vw", height = "27vh")
+                  plotly::plotlyOutput(ns("time_plot"), width = "30vw", height = "35vh")
                    )
   )
 }
@@ -64,7 +66,7 @@ mod_landing_map_server <- function(id){
     new_end <- readRDS("data/dynamic/new_end.rds")
     
     #create map, data is already provided at correct date
-    map_data <- readRDS("data/dynamic/inc_map_popup.rds") |>
+    map_data <- readRDS("data/dynamic/inc_map_popup.rds") %>%
       #drop NAs
       filter(!(is.na(median)))
 
@@ -121,8 +123,8 @@ mod_landing_map_server <- function(id){
       fktSelect <- str_split_1(clicked_fkt, "_")[[2]]
       
       #hide old selected and highlight new
-      proxy_map |>
-        hideGroup(map_data$comm_fkt) |>
+      proxy_map %>%
+        hideGroup(map_data$comm_fkt) %>%
         showGroup(clicked_fkt)
       
       output$time_plot <- renderPlotly(timeseries_comm(communeSelect = communeSelect,

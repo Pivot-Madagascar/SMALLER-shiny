@@ -51,31 +51,31 @@ mod_data_explore_server <- function(id){
     ns <- session$ns
     
     #full table of data
-    table_data <- readRDS("data/dynamic/inc-fokontany.rds") |>
-      select(-pop, -hist_year, -season, -month_lab) |>
+    table_data <- readRDS("data/dynamic/inc-fokontany.rds") %>%
+      select(-pop, -hist_year, -season, -month_lab) %>%
       #adjust error in cases
-      mutate(case_med = ifelse(!is.na(case_true), case_true, case_med)) |>
-      pivot_longer(-c(comm_fkt, date), names_to = "metric", values_to = "count") |>
-      mutate(count= floor(count)) |>
-      tidyr::separate(metric, into = c("indicator", "measure"), sep = "_") |>
-      filter(measure != "true") |>
+      mutate(case_med = ifelse(!is.na(case_true), case_true, case_med)) %>%
+      pivot_longer(-c(comm_fkt, date), names_to = "metric", values_to = "count") %>%
+      mutate(count= floor(count)) %>%
+      tidyr::separate(metric, into = c("indicator", "measure"), sep = "_") %>%
+      filter(measure != "true") %>%
       mutate(measure = case_when(
         measure == "lowCI" ~ "Estimation Minimale",
         measure == "med" ~ "Estimation Moyenne",
         measure == "uppCI" ~ "Estimation Maximale"
-      )) |>
-      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") |>
-      pivot_wider(names_from = measure, values_from = count) |>
+      )) %>%
+      tidyr::separate(comm_fkt, into = c("commune", "fokontany"), sep = "_") %>%
+      pivot_wider(names_from = measure, values_from = count) %>%
       rename(Commune = commune, Fokontany = fokontany, Date = date)
       
     #track selected inputs
     # for choosing a fokontany
     observe({
       fokontany_names <- if(is.null(input$commune)) character(0) else {
-        filter(table_data, Commune %in% toupper(input$commune)) |>
-          pull(Fokontany) |>
-          unique() |>
-          sort() |>
+        filter(table_data, Commune %in% toupper(input$commune)) %>%
+          pull(Fokontany) %>%
+          unique() %>%
+          sort() %>%
           stringr::str_to_title()
       }
       print(fokontany_names)
@@ -90,12 +90,12 @@ mod_data_explore_server <- function(id){
     
     this_df <- reactive({
       #filter based on inputs
-      table_data |>
+      table_data %>%
         filter(
           is.null(input$commune) | Commune %in% toupper(input$commune),
           is.null(input$indicator) | indicator %in% input$indicator,
           is.null(input$fokontany) | Fokontany %in% toupper(input$fokontany)
-        ) |>
+        ) %>%
         select(-indicator)
     })
     

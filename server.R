@@ -24,7 +24,7 @@ require(ggplot2)
 require(sf)
 require(fontawesome)
 
-# Define server logic required to draw a histogram
+# Define server logic
 shinyServer(function(input, output) {
 
   #landing page map

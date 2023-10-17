@@ -12,10 +12,10 @@ plot_act_bar <- function(plot_data){
   
   new_end <- readRDS("data/dynamic/new_end.rds")
   
-  plot_data |>
+  plot_data %>%
     mutate(year = as.factor(year))
   
-  missing_coords <- filter(plot_data, rdt_missing == "missing", metric == "sum_act") |>
+  missing_coords <- filter(plot_data, rdt_missing == "missing", metric == "sum_act") %>%
     filter(year != year(new_end))
 
   ggplot(plot_data, aes(x = year, group = year)) +

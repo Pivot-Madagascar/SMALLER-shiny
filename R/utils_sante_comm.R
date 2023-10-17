@@ -41,19 +41,19 @@ timeseries_comm <- function(communeSelect,
   plot_data <- rename(plot_data, ind_cols)
 
   #plotly prefers wide data
-  plotly_data <- plot_data |>
-    select(y_med, season, month_lab) |>
+  plotly_data <- plot_data %>%
+    select(y_med, season, month_lab) %>%
     #round for better labels
-    mutate(y_med = round(y_med,2)) |>
-    mutate(season = gsub("/", "_", paste("Season", stringr::str_trim(season), sep = "_"))) |>
+    mutate(y_med = round(y_med,2)) %>%
+    mutate(season = gsub("/", "_", paste("Season", stringr::str_trim(season), sep = "_"))) %>%
     tidyr::pivot_wider(names_from = season, values_from = y_med)
-  plotly_cis <- plot_data |>
+  plotly_cis <- plot_data %>%
     filter(season == "Saison en cours")
   
   #create key for past seasons
-  season_labels <- data.frame(season_col = colnames(plotly_data)[2:5])|>
-    mutate(season_label = gsub("Season_","",season_col)) |>
-    mutate(season_label = gsub("_", "/", season_label)) |>
+  season_labels <- data.frame(season_col = colnames(plotly_data)[2:5])%>%
+    mutate(season_label = gsub("Season_","",season_col)) %>%
+    mutate(season_label = gsub("_", "/", season_label)) %>%
     pull(season_label)
   
   #rename columns so it can be used in the function
@@ -72,8 +72,8 @@ timeseries_comm <- function(communeSelect,
 create_dt <- function(table_df){
   DT::datatable(table_df,
                 options = list(paging = TRUE, searching = TRUE),
-                rownames = F) |>
-    formatStyle(columns = colnames(table_df), fontSize = '75%') |>
+                rownames = F) %>%
+    formatStyle(columns = colnames(table_df), fontSize = '75%') %>%
     formatRound(columns = c("Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale"), digits = 0)
 }
 

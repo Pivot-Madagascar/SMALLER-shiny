@@ -103,7 +103,7 @@ tagList(
                     hr(),
                   ),
                   fluidRow(
-                    column(width = 2, 
+                    column(width = 3, 
                             fluidRow(
                               valueBox(value =  flash_list$flash_inc,
                                        subtitle = "cas pour 100k",
@@ -137,7 +137,7 @@ tagList(
                            )
                     ), #end column 1
           ## ----landing page map ------------------#########
-                    column(width = 10,
+                    column(width = 9,
           
                            mod_landing_map_ui("land_map"),
                            mod_map_panel_ui("land_map")

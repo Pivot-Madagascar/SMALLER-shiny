@@ -33,13 +33,13 @@ timeseries_commune <- function(communeSelect,
   plot_data <- rename(plot_data, ind_cols)
 
   #plotly prefers wide data
-  plotly_data <- plot_data |>
-    select(y_med, season, month_lab) |>
+  plotly_data <- plot_data %>%
+    select(y_med, season, month_lab) %>%
     #round for better labels
-    mutate(y_med = round(y_med,2)) |>
-    mutate(season = gsub("/", "_", paste("Season", stringr::str_trim(season), sep = "_"))) |>
+    mutate(y_med = round(y_med,2)) %>%
+    mutate(season = gsub("/", "_", paste("Season", stringr::str_trim(season), sep = "_"))) %>%
     tidyr::pivot_wider(names_from = season, values_from = y_med)
-  plotly_cis <- plot_data |>
+  plotly_cis <- plot_data %>%
     filter(season == "Present")
 
   source("R/utils_plotlyTime.R")
@@ -56,7 +56,7 @@ write_file <- function(file_path, data)
 create_dt <- function(table_df){
   DT::datatable(table_df,
                 options = list(paging = TRUE, searching = TRUE),
-                rownames = F) |>
-    formatStyle(columns = colnames(table_df), fontSize = '75%') |>
+                rownames = F) %>%
+    formatStyle(columns = colnames(table_df), fontSize = '75%') %>%
     formatRound(columns = c("Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale"), digits = 0)
 }

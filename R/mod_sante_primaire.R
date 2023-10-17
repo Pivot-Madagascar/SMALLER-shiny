@@ -62,10 +62,10 @@ mod_sante_primaire_server <- function(id){
     #starting plot and table
     output$plot <- renderPlotly(timeseries_commune(communeSelect = "Ranomafana",
                                                    indicator = "inc"))
-    table_data <- readRDS("data/for-app/inc-commune.rds") |>
-      filter(commune %in% toupper("Ranomafana")) |>
-      select(commune, date, starts_with("inc")) |>
-      select(-ends_with("true")) |>
+    table_data <- readRDS("data/for-app/inc-commune.rds") %>%
+      filter(commune %in% toupper("Ranomafana")) %>%
+      select(commune, date, starts_with("inc")) %>%
+      select(-ends_with("true")) %>%
       mutate_at(vars(starts_with("inc")), ~floor(.))
     colnames(table_data) <- c("Commune", "Date", "Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale")
     #output table
@@ -88,10 +88,10 @@ mod_sante_primaire_server <- function(id){
                                                      indicator = this_indicator))
 
       # data table object
-      table_data <- readRDS("data/for-app/inc-commune.rds") |>
-        filter(commune %in% toupper(this_commune)) |>
-        select(commune, date, starts_with(this_indicator)) |>
-        select(-ends_with("true")) |>
+      table_data <- readRDS("data/for-app/inc-commune.rds") %>%
+        filter(commune %in% toupper(this_commune)) %>%
+        select(commune, date, starts_with(this_indicator)) %>%
+        select(-ends_with("true")) %>%
         mutate_at(vars(starts_with(this_indicator)), ~floor(.))
       colnames(table_data) <- c("Commune", "Date", "Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale")
 
