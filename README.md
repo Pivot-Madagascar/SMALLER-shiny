@@ -1,8 +1,8 @@
 # SMALLER-shiny
 
-Front-end for SMALLER dashboard to be run on Pivot's AWS Shiny-Server
+Front-end for SMALLER dashboard to be run on Pivot's AWS Shiny-Server at https://smaller.pivot-dashboard.org
 
-Currently contains only the results of the statistical model.
+Currently contains only the results of the statistical model, but will eventually also have the dynamic model as well.
 
 ## Set-up
 
@@ -27,9 +27,10 @@ Code to do this given the current folder architecture to be run within the `smal
 
 ### Migration to Server
 
-1. Log-into server
-2. Pull new github repo
-3. shoudl work?
+1. Log-into server. Shiny app is located at `/srv/shiny-server/smaller`
+2. Pull changes into this github repo
+3. Test locally by going to `IP Address:3838/smaller` in the browser. Logs are printed into /var/log/shiny-server
+4. If it doesn't work, revert to prior commit.
 
 # Contact
 
