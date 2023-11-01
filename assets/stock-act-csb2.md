@@ -1,3 +1,1 @@
-Ces figures présentent des informations sur le risque de rupture de stock pour trois mois à venir pour les CSB2. Le nombre de cas vus et traités aux CSB au cours des trois dernières années est coloré en gris et en noir, et le nombre prévu de cas arrivant aux CSB cette saison est coloré en rouge. Le nombre de cas et le pourcentage traité par ACT pour les trois dernières années sont affichés pour estimer le risque de rupture de stock si la même quantité de médicaments des années précédentes est disponible cette année.
-
-Vous pouvez choisir les CSBs à visualiser à l'aide du menu. Pour l'instant, nous ne disposons que des données pour le CSB2.
+Ce tableau présente des informations sur l'utilisation historique du TDR au CSBs au cours du mois à venir par rapport au nombre prévu de cas de paludisme. Le nombre total de cas de paludisme dans la zone d'un CSB ainsi que le nombre prévu de cas vus au centre de santé sont indiqués.

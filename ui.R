@@ -74,7 +74,7 @@ tagList(
                                             tabName = "flash_dash"),
                                    menuItem("Tableau de Données", icon = icon("table", lib = "font-awesome"),
                                             tabName = "fokontany_table"),
-                                   menuItem("Ruptures de Stock", tabName = "stock_csb2",
+                                   menuItem("Stock de TDR", tabName = "stock_csb2",
                                             icon = icon("hospital", lib = "font-awesome")),
                                    menuItem("À propos", icon = icon("circle-info", lib = "font-awesome"),
                                             menuSubItem("L'application", tabName = "about"),
@@ -168,7 +168,7 @@ tagList(
                                collapsed = TRUE,
                                width = 12)),
                   #bar chart of ACTs
-                  mod_stock_act_ui("act1")),
+                  mod_stock_table_ui("act_table")),
           ## about the model page ------------------
           tabItem(tabName = 'about',
                   includeMarkdown("assets/home.md")

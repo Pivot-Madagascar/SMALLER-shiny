@@ -40,5 +40,8 @@ shinyServer(function(input, output) {
   
   #stockout barchart module
   mod_stock_act_server("act1")
+  
+  #stockout table module
+  mod_stock_table_server("act_table")
 
 })
