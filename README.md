@@ -14,7 +14,7 @@ Code to install packages on shiny-server:
 
 ```
 sudo su - \
-        -c "R -e \"install.packages(c('leaflet', 'lubridate', 'dplyr', 'attempt', 'DT', 'glue', 'golem', 'htmltools', 'pkgload', 'plotly', 'scales', 'sf', 'shinyWidgets', 'stringr', 'tidyr', 'rmarkdown'), repos='http://cran.rstudio.com/')\""
+        -c "R -e \"install.packages(c('leaflet', 'lubridate', 'dplyr', 'attempt', 'DT', 'glue', 'golem', 'htmltools', 'pkgload', 'plotly', 'scales', 'sf', 'shinyWidgets', 'stringr', 'tidyr', 'rmarkdown', 'reactable'), repos='http://cran.rstudio.com/')\""
 ```
 
 ### Data
@@ -29,7 +29,7 @@ Code to do this given the current folder architecture to be run within the `smal
 
 1. Log-into server. Shiny app is located at `/srv/shiny-server/smaller`
 2. Pull changes into this github repo
-3. Test locally by going to `IP Address:3838/smaller` in the browser. Logs are printed into /var/log/shiny-server
+3. Test locally by going to `IP Address:3838/smaller` in the browser. Logs are printed into `/var/log/shiny-server`
 4. If it doesn't work, revert to prior commit.
 
 # Contact

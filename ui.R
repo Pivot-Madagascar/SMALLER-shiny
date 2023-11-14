@@ -42,7 +42,7 @@ tagList(
   #newer font awesome version
   tags$style("@import url(https://use.fontawesome.com/releases/v6.4.0/css/all.css);"),
   fluidPage(
-    dashboardPage(
+    dashboardPage(title = "SMALLER Dashboard",
      
       skin = "green",
       
