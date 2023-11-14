@@ -25,7 +25,7 @@ mod_stock_table_server <- function(id){
     stock_table <- readRDS("data/dynamic/stockout-table.rds") 
     
     predict_header <- paste0("Prédictions ", stock_table$month_year[1])
-    stock_table <- dplyr::select(stock_table, -month_year) |>
+    stock_table <- dplyr::select(stock_table, -month_year) %>%
       dplyr::rename("Cas total" = case_total,
              "Cas vus aux CSB" = case_csb)
     #create DT datable
