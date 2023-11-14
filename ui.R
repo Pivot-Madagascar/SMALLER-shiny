@@ -50,7 +50,7 @@ tagList(
       header = dashboardHeader(
                                title = "SMALLER: Prédire le paludisme dans le district d'Ifanadiana",
                                titleWidth = 600,
-                               tags$li(a(href = "https://sante.gov.mg",
+                               tags$li(a(href = "http://www.sante.gov.mg/ministere-sante-publique/",
                                          img(src = "msanp-logo.jpg",
                                              height = "30px"),
                                          style = "padding-top:10px; padding-bottom:10px;"),
