@@ -35,6 +35,7 @@ require(tidyr)
 require(ggplot2)
 require(sf)
 require(fontawesome)
+require(reactable)
 
 tagList(
   # Your application UI logic

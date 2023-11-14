@@ -23,6 +23,7 @@ require(tidyr)
 require(ggplot2)
 require(sf)
 require(fontawesome)
+library(reactable)
 
 # Define server logic
 shinyServer(function(input, output) {

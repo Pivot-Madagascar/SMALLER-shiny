@@ -1,0 +1,80 @@
+#' stock table UI Function
+#'
+#' @description A shiny Module.
+#'
+#' @param id,input,output,session Internal parameters for {shiny}.
+#'
+#' @noRd
+#'
+#' @importFrom shiny NS tagList
+#' @importFrom shinyWidgets pickerInput
+mod_stock_table_ui <- function(id){
+  ns <- NS(id)
+  
+  reactableOutput(ns("table"))
+  
+}
+
+#' stock_act Server Functions
+#'
+#' @noRd
+mod_stock_table_server <- function(id){
+  moduleServer( id, function(input, output, session){
+    ns <- session$ns
+    
+    stock_table <- readRDS("data/dynamic/stockout-table.rds") 
+    
+    predict_header <- paste0("Prédictions ", stock_table$month_year[1])
+    stock_table <- dplyr::select(stock_table, -month_year) |>
+      dplyr::rename("Cas total" = case_total,
+             "Cas vus aux CSB" = case_csb)
+    #create DT datable
+    sketch <- htmltools::withTags(table(
+      class = 'display',
+      thead(
+        tr(
+          th(rowspan = 2, 'CSB2'),
+          th(colspan = 2, "Quantité de TDR (historique)"),
+          th(colspan = 2, predict_header)
+        ),
+        tr(
+          lapply(colnames(stock_table)[2:5], th)
+        )
+      )
+    ))
+    
+    output$table <- renderReactable({
+      reactable(stock_table,
+        columnGroups = list(
+          colGroup(name =  "Quantités de TDR (historique)", columns = colnames(stock_table)[2:3]),
+          colGroup(name = predict_header, columns = colnames(stock_table)[4:5])
+        ),
+        defaultPageSize = 15 #number of CSBS
+      )
+    })
+    
+  })
+}
+
+stock_table_demo <- function(){
+  #source functions
+  source("R/utils_stock_act.R")
+  #declare packages
+  library(shiny)
+  library(shinyWidgets)
+  library(dplyr)
+  library(lubridate)
+  library(stringr)
+  library(reactable)
+  
+  ui <- fluidPage(
+    mod_stock_table_ui("act1")
+  )
+  server <- function(input, output, session){
+    
+    mod_stock_table_server("act1")
+  }
+  shinyApp(ui, server)
+}
+
+stock_table_demo()
