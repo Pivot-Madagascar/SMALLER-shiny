@@ -55,7 +55,7 @@ write_file <- function(file_path, data)
 #data table format function
 create_dt <- function(table_df){
   DT::datatable(table_df,
-                options = list(paging = TRUE, searching = TRUE),
+                options = list(paging = TRUE, searching = TRUE, pageLength = 20),
                 rownames = F) %>%
     formatStyle(columns = colnames(table_df), fontSize = '75%') %>%
     formatRound(columns = c("Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale"), digits = 0)

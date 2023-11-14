@@ -89,7 +89,7 @@ mod_landing_map_server <- function(id){
     output$map <- renderLeaflet(
     leaflet(map_data) %>%
       addTiles() %>%
-      setView(lat = -21, lng = 48.3, zoom = 9) %>%
+      setView(lat = -21, lng = 47.8, zoom = 9) %>%
       addPolygons(data = map_data,
                   fillColor = ~colorpal(median),
                   color = "black",
@@ -110,7 +110,7 @@ mod_landing_map_server <- function(id){
       hideGroup(group = map_data$comm_fkt) %>%
       addLegend_decreasing("bottomleft", pal = colorpal, values = ~median,
                            title = "Incidence Prédit<br>(pour 1000)",
-                           na.label = "", decreasing = TRUE)
+                           na.label = "", decreasing = TRUE) 
     )
     
     proxy_map <- leafletProxy("map")
