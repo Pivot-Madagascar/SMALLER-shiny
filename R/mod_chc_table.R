@@ -12,6 +12,12 @@
 mod_chc_table_ui <- function(id){
 ns <- NS(id)
 
+new_end <- readRDS("data/dynamic/new_end.rds")
+chc_months_avail <- as.character(seq.Date((new_end %m+% months(1)),
+                                          (new_end %m+% months(3)), 
+                                          by = "month"))
+chc_months_avail <- paste(month.abb[month(chc_months_avail)], year(chc_months_avail))
+
 fluidRow(
   column(3,
          #commune selection
@@ -28,7 +34,8 @@ fluidRow(
                      choices = c("Tous"=""), multiple = TRUE)
   ),
   column(3,
-         uiOutput(ns("month_selection"))
+         selectInput(inputId = ns("select_month"), label = "Choisir un mois:",
+                     choices = chc_months_avail, multiple = FALSE)
   ),
   column(12,
          dataTableOutput(ns("table"))
@@ -55,18 +62,9 @@ mod_chc_table_server <- function(id){
       select(Commune, Fokontany, Mois = month_year, "Cas Total" = mal_case_total, 
             "Cas prévus pour être traités au CSB" = mal_case_csb, 
              "Cas prévus restant au niveau communautaire" = mal_case_chc)
-    
-    avail_months <- unique(table_raw$Mois) #should stay in order
-    avail_months_fct <- factor(avail_months, levels = avail_months)
-    
+
     
     #track selected inputs ------------
-    #for choosing the month
-    output$month_selection <- renderUI({
-      selectInput(inputId = ns("month"), label = "Choisir un mois:",
-                  choices = avail_months_fct, multiple = FALSE, 
-                  selected = avail_months_fct[1])
-    })
     
     # for choosing a fokontany
     observe({
@@ -86,6 +84,7 @@ mod_chc_table_server <- function(id){
                            choices = fokontany_names,
                            selected = stillSelected, server = TRUE)
     }) #end observe
+
     
     # reactive data table -----------------
     
@@ -95,7 +94,7 @@ mod_chc_table_server <- function(id){
         filter(
           is.null(input$commune) | Commune %in% toupper(input$commune),
           is.null(input$fokontany) | Fokontany %in% toupper(input$fokontany),
-          Mois == input$month
+          Mois == input$select_month
         ) 
     })
     
@@ -127,7 +126,7 @@ chc_table_demo <- function(){
   library(lubridate)
   library(stringr)
   library(DT)
-  
+
   ui <- fluidPage(
     mod_chc_table_ui("test1")
   )

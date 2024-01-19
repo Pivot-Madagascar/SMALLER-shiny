@@ -18,6 +18,11 @@ if(flash_list$compare_ratio>=100){
   year_comparison <- paste0("-", 100-flash_list$compare_ratio, "%")
 }
 
+chc_months_avail <- seq.Date((new_end %m+% months(1)),
+                                          (new_end %m+% months(3)), 
+                                          by = "month")
+chc_months_avail <- paste(month.abb[month(chc_months_avail)], year(chc_months_avail))
+
 
 #declare pacakges
 require(shiny)
