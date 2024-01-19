@@ -39,6 +39,9 @@ shinyServer(function(input, output) {
   # #commune level server
   # mod_sante_primaire_server("commune")
   
+  #community cases server
+  mod_chc_table_server("chc_cases")
+  
   #stockout barchart module
   mod_stock_act_server("act1")
   

@@ -71,7 +71,9 @@ timeseries_comm <- function(communeSelect,
 #data table
 create_dt <- function(table_df){
   DT::datatable(table_df,
-                options = list(paging = TRUE, searching = TRUE),
+                options = list(paging = TRUE, searching = FALSE,
+                               language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json')
+                               ),
                 rownames = F) %>%
     formatStyle(columns = colnames(table_df), fontSize = '75%') %>%
     formatRound(columns = c("Estimation Minimale", 'Estimation Moyenne', "Estimation Maximale"), digits = 0)
@@ -80,4 +82,13 @@ create_dt <- function(table_df){
 write_file <- function(file_path, data)
 {
   data.table::fwrite(x = data, file = file_path)
+}
+
+create_dt_chc <- function(table_df){
+  DT::datatable(table_df,
+                options = list(paging = TRUE, searching = FALSE, pageLength = 20,
+                               language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json')
+                               ),
+                rownames = F) %>%
+    formatStyle(columns = colnames(table_df), fontSize = '100%') 
 }

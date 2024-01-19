@@ -6,9 +6,11 @@ Cette application fait partie du projet 'Surveillance and control of malaria at 
 
 La barre de navigation à gauche contient des pages présentant différents types d'informations sur le paludisme:
 
-- **Palu en Bref**: Un tableau de borde avec les alertes sur quatre indicateurs, une carte d'incidence prévu pendant les prochains trois mois, et des series-temporelles pour chaque fokontany
+- **Palu en Bref**: Un tableau de bord avec des alertes sur quatre indicateurs et une carte d'incidence prévue pour les trois prochains mois. En cliquant sur un fokontany, une fenêtre s'affiche avec les séries temporelles actuelles et historiques pour ce fokontany.
 
-- **Ruptures du Stock**: des informations sur la disponibilité historique des ACT par rapport au nombre prévu de cas de paludisme au cours de la future saison de paludisme aux CSB
+- **Tableau de Données**: Cette page contient un tableau des incidences et des nombres de cas que l'utilisateur peut explorer en filtrant sur une commune ou un fokontany donné. Les données peuvent également être téléchargées sur cette page.
+
+- **Stock de TDR**: Cette page fournit des informations sur les besoins de diagnostic passés et prévus sous la forme de tests de diagnostic rapide du paludisme (TDR) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
 
 ### Futurs mises à jours
 

@@ -23,7 +23,7 @@ The disease predictions come from a repo that contains the service for the backe
 
 Code to do this given the current folder architecture to be run within the `smaller-shiny` wd.
 
-`cp -r ../smaller-backend/output/. data/dynamic`
+`cp -rv ../smaller-backend/output/. data/dynamic`
 
 ### Migration to Server
 

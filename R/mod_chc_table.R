@@ -1,0 +1,144 @@
+#' UI function for table of cases at CHCs
+#'
+#' @description A shiny Module.
+#'
+#' @param id,input,output,session Internal parameters for {shiny}.
+#'
+#' @noRd
+#'
+#' @importFrom shiny NS tagList
+#' @importFrom shinyWidgets pickerInput
+#' 
+mod_chc_table_ui <- function(id){
+ns <- NS(id)
+
+fluidRow(
+  column(3,
+         #commune selection
+         selectInput(ns("commune"), label = "Choix de commune(s):",
+                     choices = c("Tous" = "", "Ambiabe", "Ambohimanga du Sud", "Ambohimiera", "Ampasinambo",
+                                 "Analampasina", "Androrangavola", "Antaretra", "Antsindra",
+                                 "Fasintsara", "Ifanadiana", "Kelilalina", "Maroharatra",
+                                 "Marotoko", 'Ranomafana', "Tsaratanana"),
+                     multiple = TRUE)
+  ),
+  column(3,
+         #fokontany selection (this gets updated based on commune)
+         selectInput(inputId = ns("fokontany"), label = "Choix de fokontany:",
+                     choices = c("Tous"=""), multiple = TRUE)
+  ),
+  column(3,
+         uiOutput(ns("month_selection"))
+  ),
+  column(12,
+         dataTableOutput(ns("table"))
+  ),
+  column(5,),
+  column(3,
+         shiny::downloadButton(
+           outputId = ns("download_button"),
+           label = "Télécharger le tableau.")
+  )
+) #fluidRow
+}
+
+mod_chc_table_server <- function(id){
+  moduleServer(id, function(input, output, session){
+    ns <- session$ns
+    
+    #full table of table (read once)
+    table_raw <- readRDS("data/dynamic/CHW_cases.rds") %>%
+      mutate(month_year = paste(month.abb[lubridate::month(date)], 
+                                lubridate::year(date), sep = " ")) %>%
+      select(-date) %>%
+      tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%
+      select(Commune, Fokontany, Mois = month_year, "Cas Total" = mal_case_total, 
+            "Cas prévus pour être traités au CSB" = mal_case_csb, 
+             "Cas prévus restant au niveau communautaire" = mal_case_chc)
+    
+    avail_months <- unique(table_raw$Mois) #should stay in order
+    avail_months_fct <- factor(avail_months, levels = avail_months)
+    
+    
+    #track selected inputs ------------
+    #for choosing the month
+    output$month_selection <- renderUI({
+      selectInput(inputId = ns("month"), label = "Choisir un mois:",
+                  choices = avail_months_fct, multiple = FALSE, 
+                  selected = avail_months_fct[1])
+    })
+    
+    # for choosing a fokontany
+    observe({
+      fokontany_names <- if(is.null(input$commune)) character(0) else {
+        filter(table_raw, Commune %in% toupper(input$commune)) %>%
+          pull(Fokontany) %>%
+          unique() %>%
+          sort() %>%
+          stringr::str_to_title()
+      }
+      # print(fokontany_names)
+      
+      stillSelected <- isolate(input$fokontany[input$fokontany %in% fokontany_names])
+      # print(stillSelected)
+      updateSelectizeInput(session,
+                           inputId = "fokontany", 
+                           choices = fokontany_names,
+                           selected = stillSelected, server = TRUE)
+    }) #end observe
+    
+    # reactive data table -----------------
+    
+    table_react <- reactive({
+      #filter based on inputs
+      table_raw %>%
+        filter(
+          is.null(input$commune) | Commune %in% toupper(input$commune),
+          is.null(input$fokontany) | Fokontany %in% toupper(input$fokontany),
+          Mois == input$month
+        ) 
+    })
+    
+    output$table <- DT::renderDataTable({
+     create_dt_chc(table_react()) 
+    })
+
+    
+    
+    output$download_button <- shiny::downloadHandler(
+      filename = function(){
+        paste0(input$month, " Malaria CHC Cases.csv")
+      },
+      content = function(file_path)
+      {
+        write_file(file_path = file_path, data = table_react())
+      }
+    )
+    
+  }) #end moduleServer
+}
+
+chc_table_demo <- function(){
+  #source functions
+  source("R/utils_sante_comm.R")
+  #declare packages
+  library(shiny)
+  library(dplyr)
+  library(lubridate)
+  library(stringr)
+  library(DT)
+  
+  ui <- fluidPage(
+    mod_chc_table_ui("test1")
+  )
+  
+  server <- function(input,output,session){
+    mod_chc_table_server("test1")
+    
+  }
+  
+  shinyApp(ui, server)
+  
+}
+
+chc_table_demo()

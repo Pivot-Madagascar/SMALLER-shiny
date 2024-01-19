@@ -75,7 +75,9 @@ tagList(
                                             tabName = "flash_dash"),
                                    menuItem("Tableau de Données", icon = icon("table", lib = "font-awesome"),
                                             tabName = "fokontany_table"),
-                                   menuItem("Stock de TDR", tabName = "stock_csb2",
+                                   menuItem("Besoins Communautaires", tabName = "chc_cases",
+                                            icon = icon("people-roof", lib = "font-awesome")),
+                                   menuItem("Besoins aux CSB", tabName = "stock_csb2",
                                             icon = icon("hospital", lib = "font-awesome")),
                                    menuItem("À propos", icon = icon("circle-info", lib = "font-awesome"),
                                             menuSubItem("L'application", tabName = "about"),
@@ -158,6 +160,15 @@ tagList(
           ## Data Table Tab ---------------------
           tabItem(tabName = "fokontany_table",
                   mod_data_explore_ui("fokontany_table")),
+          ## CHC Case Tab ------------------------
+          tabItem(tabName = "chc_cases",
+                  #intro and instruction
+                  fluidRow(box(status = "info",
+                               title = "Nombres de cas predit aux sites communautaires",
+                               collapsible = TRUE,
+                               collapsed = FALSE,
+                               width = 12)),
+                  mod_chc_table_ui("chc_cases")),
           
           ## stockout tab ------------------
           tabItem(tabName = "stock_csb2",

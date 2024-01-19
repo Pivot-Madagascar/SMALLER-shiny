@@ -8,7 +8,7 @@
 #'
 #' @importFrom shiny NS tagList
 #' @importFrom tidyr separate
-#' @importFrom DT dataTableOutput formatStyle formatRound
+#' @importFrom DT formatStyle formatRound
 
 mod_data_explore_ui <- function(id){
   ns <- NS(id)
@@ -78,10 +78,10 @@ mod_data_explore_server <- function(id){
           sort() %>%
           stringr::str_to_title()
       }
-      print(fokontany_names)
+      # print(fokontany_names)
       
       stillSelected <- isolate(input$fokontany[input$fokontany %in% fokontany_names])
-      print(stillSelected)
+      # print(stillSelected)
       updateSelectizeInput(session,
                            inputId = "fokontany", 
                            choices = fokontany_names,
