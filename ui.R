@@ -135,7 +135,7 @@ tagList(
                             ),
                             fluidRow(
                               valueBox(value = paste(flash_list$stock_alert_numCSB, "CSB"),
-                                       subtitle = "à risque du rupture du stock",
+                                       subtitle = "voient plus de cas que l'année dernière",
                                        color = "teal",
                                        icon = icon("pills", lib = "font-awesome"),
                                        width = 12)
@@ -169,7 +169,7 @@ tagList(
           tabItem(tabName = "chc_cases",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Nombres de cas predit aux sites communautaires",
+                               title = "Nombre de cas prévu restant au niveau communautaire",
                                collapsible = TRUE,
                                collapsed = FALSE,
                                width = 12)),
@@ -179,7 +179,7 @@ tagList(
           tabItem(tabName = "stock_csb2",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Risque du Rupture du Stock aux CSBs",
+                               title = "Besoins d'ACTs prévus aux CSB",
                                includeMarkdown("assets/stock-act-csb2.md"),
                                collapsible = TRUE,
                                collapsed = TRUE,

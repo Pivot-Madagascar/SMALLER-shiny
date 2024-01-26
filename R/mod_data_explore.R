@@ -31,7 +31,7 @@ mod_data_explore_ui <- function(id){
     column(3,
            #choose an indicator
            selectInput(ns("indicator"), "Choix d'indicateur:",
-                       choices = c("Cas" = "case", "Incidence" = "inc"), selected = "incidence")
+                       choices = c("Nombre total de cas" = "case", "Incidence (par 1000)" = "inc"), selected = "incidence")
            ),
     column(12,
            dataTableOutput(ns("dt_table"))

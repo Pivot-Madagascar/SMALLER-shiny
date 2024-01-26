@@ -8,6 +8,7 @@
 #'
 #' @importFrom shiny NS tagList
 #' @importFrom shinyWidgets pickerInput
+#' @import plotly DT
 #' 
 mod_chc_table_ui <- function(id){
 ns <- NS(id)
@@ -21,12 +22,12 @@ chc_months_avail <- paste(month.abb[month(chc_months_avail)], year(chc_months_av
 fluidRow(
   column(3,
          #commune selection
-         selectInput(ns("commune"), label = "Choix de commune(s):",
+         selectInput(ns("commune"), label = "Choix de commune:",
                      choices = c("Tous" = "", "Ambiabe", "Ambohimanga du Sud", "Ambohimiera", "Ampasinambo",
                                  "Analampasina", "Androrangavola", "Antaretra", "Antsindra",
                                  "Fasintsara", "Ifanadiana", "Kelilalina", "Maroharatra",
                                  "Marotoko", 'Ranomafana', "Tsaratanana"),
-                     multiple = TRUE)
+                     multiple = FALSE)
   ),
   column(3,
          #fokontany selection (this gets updated based on commune)
@@ -34,9 +35,12 @@ fluidRow(
                      choices = c("Tous"=""), multiple = TRUE)
   ),
   column(3,
-         selectInput(inputId = ns("select_month"), label = "Choisir un mois:",
+         selectInput(inputId = ns("select_month"), label = "Choix de mois:",
                      choices = chc_months_avail, multiple = FALSE)
   ),
+  column(12,
+         plotly::plotlyOutput(ns("comm_barplot"))
+         ),
   column(12,
          dataTableOutput(ns("table"))
   ),
@@ -60,8 +64,8 @@ mod_chc_table_server <- function(id){
       select(-date) %>%
       tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%
       select(Commune, Fokontany, Mois = month_year, "Cas Total" = mal_case_total, 
-            "Cas prévus pour être traités au CSB" = mal_case_csb, 
-             "Cas prévus restant au niveau communautaire" = mal_case_chc)
+            "Nombre de cas prévu pour être traités au CSB" = mal_case_csb, 
+             "Nombre de cas prévu restant au niveau communautaire" = mal_case_chc)
 
     
     #track selected inputs ------------
@@ -101,8 +105,16 @@ mod_chc_table_server <- function(id){
     output$table <- DT::renderDataTable({
      create_dt_chc(table_react()) 
     })
-
     
+    output$comm_barplot <- renderPlotly({
+      validate(need(input$commune, 
+                    "Choissesez un commune pour visualizer 
+                    les cas par fokontany."))
+      create_community_barplot(table_raw = table_raw,
+                                                    monthSelect = input$select_month,
+                                                    fokontanySelect = input$fokontany,
+                                                    communeSelect = input$commune)
+      })
     
     output$download_button <- shiny::downloadHandler(
       filename = function(){
@@ -114,12 +126,15 @@ mod_chc_table_server <- function(id){
       }
     )
     
+    # reactive bar plot ------------- ##
+    
   }) #end moduleServer
 }
 
 chc_table_demo <- function(){
   #source functions
   source("R/utils_sante_comm.R")
+  source("R/utils_chc_table.R")
   #declare packages
   library(shiny)
   library(dplyr)
