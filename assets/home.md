@@ -10,7 +10,9 @@ La barre de navigation à gauche contient des pages présentant différents type
 
 - **Tableau de Données**: Cette page contient un tableau des incidences et des nombres de cas que l'utilisateur peut explorer en filtrant sur une commune ou un fokontany donné. Les données peuvent également être téléchargées sur cette page.
 
-- **Stock de TDR**: Cette page fournit des informations sur les besoins de diagnostic passés et prévus sous la forme de tests de diagnostic rapide du paludisme (TDR) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
+- **Besoins Communautaires**: Cette page affiche le nombre total de cas attendus par fokontany, répartis entre les cas prévus pour être traités au CSB et ceux qui restent au niveau communautaire. Elle peut être utilisée pour planifier la quantité de intrants nécessaires à chaque niveau du système de santé.
+
+- **Besoins aux CSB**: Cette page fournit des informations sur les besoins de médicaments antipaludiques passés et prévus sous la forme de polythérapies à base d'artémisine (ACT) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
 
 ### Futurs mises à jours
 
@@ -28,3 +30,7 @@ Avez-vous des questions ou des suggestions? N'hesitez-pas de nous contacter [par
 ### Code source
 
 L'ensemble du code source est disponible sur un repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny). Les spécifications du modèle géostatistique qui produit les prédictions sont rapportées dans Evans et al. (*in prep*).
+
+### License
+
+GPL-3+
