@@ -25,7 +25,7 @@ mod_stock_table_server <- function(id){
     stock_table <- readRDS("data/dynamic/stockout-table.rds") 
     
     predict_header <- paste0("Prédictions ", stock_table$month_year[1])
-    stock_table <- dplyr::select(stock_table, -month_year) %>%
+    stock_table <- dplyr::select(stock_table, -month_year, -date_period) %>%
       dplyr::rename("Nombre de cas total" = case_total,
              "Nombre de cas prises en charge aux CSB" = case_csb)
     #create DT datable
@@ -46,8 +46,8 @@ mod_stock_table_server <- function(id){
     output$table <- renderReactable({
       reactable(stock_table,
         columnGroups = list(
-          colGroup(name =  "Quantité d'ACT requis (historique)", columns = colnames(stock_table)[2:3]),
-          colGroup(name = predict_header, columns = colnames(stock_table)[4:5])
+          colGroup(name = predict_header, columns = colnames(stock_table)[2:3]),
+          colGroup(name =  "Quantité d'ACT requis", columns = colnames(stock_table)[4:5])
         ),
         defaultPageSize = 15 #number of CSBS
       )
@@ -77,4 +77,4 @@ stock_table_demo <- function(){
   shinyApp(ui, server)
 }
 
-stock_table_demo()
+# stock_table_demo()
