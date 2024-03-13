@@ -34,7 +34,7 @@ Code to do this given the current folder architecture to be run within the `smal
 
 # Contact
 
-Contact [Michelle Evans](mailto:mv.evans.phd@gmail.com) with question.
+Contact [Michelle Evans](mailto:mv.evans.phd@gmail.com) with questions.
 
 # License
 
