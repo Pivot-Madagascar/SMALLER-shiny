@@ -1,0 +1,1 @@
+Cette page présente le nombre de cas qui devraient rester au niveau communautaire après avoir pris en compte les cas qui se font soigner dans les CSB. Ces proportions sont basées sur l'estimation ZERO-G [Evans et al. 2023](https://doi.org/10.1038/s41598-023-48390-0) et sur l'utilisation historique des CSBs par les résidents de chaque fokontany,

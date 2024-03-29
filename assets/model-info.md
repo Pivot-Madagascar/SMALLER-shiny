@@ -1,6 +1,6 @@
 ## À propos du modèle
 
-Les prédictions visualisées sur cette application ont été créées par un modèle géostatistique. Ce modèle combine les données du système de santé et les données écologiques obtenues par télédétection pour prédire le taux du paludisme en fonction de variables socio-écologiques. Les spécifications du modèle sont rapportées dans Evans et al. (*in prep*).
+Les prédictions visualisées sur cette application ont été créées par un modèle géostatistique. Ce modèle combine les données du système de santé et les données écologiques obtenues par télédétection pour prédire le taux du paludisme en fonction des variables socio-écologiques. Les spécifications du modèle sont rapportées dans Evans et al. (*in prep*).
 
 <p style="text-align:center;"><img src="model-workflow.png" alt="Modeling Workflow" width="600px"></p>
 
@@ -28,7 +28,7 @@ Nous avons inclus quatorze variables sociales et environnementales dans le modè
 
 ### Validation du modèle
 
-En generale, notre modèle reprodit bien les dynamics du paludisme dans le district. Son 'root-mean-square-error' est de 67.48 cas per 1000 individus et sa correlation de Spearman est 0.640. Plus de détails sur la performance de modèle se trouvent dans Evans et al. (*in prep*).
+En générale, notre modèle reproduit bien les dynamics du paludisme dans le district. Son 'root-mean-square-error' est de 67.48 cas par 1000 individus et sa corrélation de Spearman est 0.640. Plus de détails sur la performance de modèle se trouvent dans Evans et al. (*in prep*).
 
 <p style="text-align:center;"><img src="validation-fkt.png" width="600px"></p>
 

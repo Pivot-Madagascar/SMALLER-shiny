@@ -78,7 +78,7 @@ tagList(
                                    # style = "position: fixed;",
                                    menuItem("Palu en Bref", icon = icon("gauge", lib = 'font-awesome'),
                                             tabName = "flash_dash"),
-                                   menuItem("Tableau de Données", icon = icon("table", lib = "font-awesome"),
+                                   menuItem("Tableau des Données", icon = icon("table", lib = "font-awesome"),
                                             tabName = "fokontany_table"),
                                    menuItem("Besoins Communautaires", tabName = "chc_cases",
                                             icon = icon("people-roof", lib = "font-awesome")),
@@ -169,7 +169,8 @@ tagList(
           tabItem(tabName = "chc_cases",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Nombre de cas prévu restant au niveau communautaire",
+                               title = "Nombre de cas prévus restant au niveau communautaire",
+                               includeMarkdown("assets/community-cases.md"),
                                collapsible = TRUE,
                                collapsed = FALSE,
                                width = 12)),
@@ -179,7 +180,7 @@ tagList(
           tabItem(tabName = "stock_csb2",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Besoins d'ACTs prévus aux CSB",
+                               title = "Besoins des ACTs prévus aux CSB",
                                includeMarkdown("assets/stock-act-csb2.md"),
                                collapsible = TRUE,
                                collapsed = TRUE,

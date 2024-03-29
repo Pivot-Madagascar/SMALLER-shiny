@@ -22,7 +22,7 @@ chc_months_avail <- paste(month.abb[month(chc_months_avail)], year(chc_months_av
 fluidRow(
   column(3,
          #commune selection
-         selectInput(ns("commune"), label = "Choix de commune:",
+         selectInput(ns("commune"), label = "Choix du commune:",
                      choices = c("Tous" = "", "Ambiabe", "Ambohimanga du Sud", "Ambohimiera", "Ampasinambo",
                                  "Analampasina", "Androrangavola", "Antaretra", "Antsindra",
                                  "Fasintsara", "Ifanadiana", "Kelilalina", "Maroharatra",
@@ -31,11 +31,11 @@ fluidRow(
   ),
   column(3,
          #fokontany selection (this gets updated based on commune)
-         selectInput(inputId = ns("fokontany"), label = "Choix de fokontany:",
+         selectInput(inputId = ns("fokontany"), label = "Choix du fokontany:",
                      choices = c("Tous"=""), multiple = TRUE)
   ),
   column(3,
-         selectInput(inputId = ns("select_month"), label = "Choix de mois:",
+         selectInput(inputId = ns("select_month"), label = "Choix du mois:",
                      choices = chc_months_avail, multiple = FALSE)
   ),
   column(12,
@@ -64,8 +64,8 @@ mod_chc_table_server <- function(id){
       select(-date) %>%
       tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%
       select(Commune, Fokontany, Mois = month_year, "Cas Total" = mal_case_total, 
-            "Nombre de cas prévu pour être traités au CSB" = mal_case_csb, 
-             "Nombre de cas prévu restant au niveau communautaire" = mal_case_chc)
+            "Nombre de cas prévus pour être traités au CSB" = mal_case_csb, 
+             "Nombre de cas prévus restant au niveau communautaire" = mal_case_chc)
 
     
     #track selected inputs ------------

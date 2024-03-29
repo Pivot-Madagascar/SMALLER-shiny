@@ -8,18 +8,18 @@ La barre de navigation à gauche contient des pages présentant différents type
 
 - **Palu en Bref**: Un tableau de bord avec des alertes sur quatre indicateurs et une carte d'incidence prévue pour les trois prochains mois. En cliquant sur un fokontany, une fenêtre s'affiche avec les séries temporelles actuelles et historiques pour ce fokontany.
 
-- **Tableau de Données**: Cette page contient un tableau des incidences et des nombres de cas que l'utilisateur peut explorer en filtrant sur une commune ou un fokontany donné. Les données peuvent également être téléchargées sur cette page.
+- **Tableau des Données**: Cette page contient un tableau des incidences et des nombres de cas que l'utilisateur peut explorer en filtrant sur une commune ou un fokontany donné. Les données peuvent également être téléchargées sur cette page.
 
-- **Besoins Communautaires**: Cette page affiche le nombre total de cas attendus par fokontany, répartis entre les cas prévus pour être traités au CSB et ceux qui restent au niveau communautaire. Elle peut être utilisée pour planifier la quantité de intrants nécessaires à chaque niveau du système de santé.
+- **Besoins Communautaires**: Cette page affiche le nombre total de cas attendus par fokontany, répartis entre les cas prévus pour être traités au CSB et ceux qui restent au niveau communautaire. Elle peut être utilisée pour planifier la quantité des intrants nécessaire à chaque niveau du système de santé.
 
-- **Besoins aux CSB**: Cette page fournit des informations sur les besoins de médicaments antipaludiques passés et prévus sous la forme de polythérapies à base d'artémisine (ACT) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
+- **Besoins aux CSBs**: Cette page fournit des informations sur les besoins de médicaments antipaludiques passés et prévus sous la forme de polythérapies à base d'artémisinine (ACT) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
 
 ### Futurs mises à jours
 
-Cette application est toujours en développement et nous planifions de faire plusieurs mises à jours dans les mois à venir:
+Cette application est toujours en développement et nous planifions de faire plusieurs mises à jour dans les mois à venir:
 
-- option de catégoriser par classe d'age (<5 ans, 5- 14 ans, 15+ ans)
-- integration des données des agents communautaire
+- option de catégoriser par classe d'âge (<5 ans, 5- 14 ans, 15+ ans)
+- intégration des données des agents communautaires
 
 Vous pouvez soumettre vos besoins par [mail](mailto:mv.evans.phd@gmail.com) ou dans notre repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny).
 
@@ -29,7 +29,7 @@ Avez-vous des questions ou des suggestions? N'hesitez-pas de nous contacter [par
 
 ### Code source
 
-L'ensemble du code source est disponible sur un repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny). Les spécifications du modèle géostatistique qui produit les prédictions sont rapportées dans Evans et al. (*in prep*).
+L'ensemble du code source est disponible sur un repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny). Les spécifications de la modèle géostatistique qui produit les prédictions sont rapportées dans Evans et al. (*in prep*).
 
 ### License
 

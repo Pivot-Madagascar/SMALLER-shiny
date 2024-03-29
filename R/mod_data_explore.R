@@ -16,7 +16,7 @@ mod_data_explore_ui <- function(id){
   fluidRow(
     column(3,
            #commune selection
-           selectInput(ns("commune"), label = "Choix de commune(s):",
+           selectInput(ns("commune"), label = "Choix du commune(s):",
                        choices = c("Tous" = "", "Ambiabe", "Ambohimanga du Sud", "Ambohimiera", "Ampasinambo",
                                    "Analampasina", "Androrangavola", "Antaretra", "Antsindra",
                                    "Fasintsara", "Ifanadiana", "Kelilalina", "Maroharatra",
@@ -25,12 +25,12 @@ mod_data_explore_ui <- function(id){
            ),
     column(3,
            #fokontany selection (this gets updated based on commune)
-           selectInput(inputId = ns("fokontany"), label = "Choix de fokontany:",
+           selectInput(inputId = ns("fokontany"), label = "Choix du fokontany:",
                        choices = c("Tous"=""), multiple = TRUE)
            ),
     column(3,
            #choose an indicator
-           selectInput(ns("indicator"), "Choix d'indicateur:",
+           selectInput(ns("indicator"), "Choix de l'indicateur:",
                        choices = c("Nombre total de cas" = "case", "Incidence (par 1000)" = "inc"), selected = "incidence")
            ),
     column(12,
