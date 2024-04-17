@@ -10,7 +10,7 @@
 #' @importFrom shinyWidgets pickerInput
 #' @import plotly DT
 #' 
-mod_chc_table_ui <- function(id){
+mod_chc_besoins_ui <- function(id){
 ns <- NS(id)
 
 new_end <- readRDS("data/dynamic/new_end.rds")
@@ -53,7 +53,7 @@ fluidRow(
 ) #fluidRow
 }
 
-mod_chc_table_server <- function(id){
+mod_chc_besoins_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     
@@ -131,7 +131,7 @@ mod_chc_table_server <- function(id){
   }) #end moduleServer
 }
 
-chc_table_demo <- function(){
+chc_besoins_demo <- function(){
   #source functions
   source("R/utils_sante_comm.R")
   source("R/utils_chc_table.R")
@@ -143,11 +143,11 @@ chc_table_demo <- function(){
   library(DT)
 
   ui <- fluidPage(
-    mod_chc_table_ui("test1")
+    mod_chc_besoins_ui("test1")
   )
   
   server <- function(input,output,session){
-    mod_chc_table_server("test1")
+    mod_chc_besoins_server("test1")
     
   }
   
@@ -155,4 +155,4 @@ chc_table_demo <- function(){
   
 }
 
-chc_table_demo()
+chc_besoins_demo()

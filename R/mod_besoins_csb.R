@@ -8,7 +8,7 @@
 #'
 #' @importFrom shiny NS tagList
 #' @importFrom shinyWidgets pickerInput
-mod_stock_table_ui <- function(id){
+mod_besoins_csb_ui <- function(id){
   ns <- NS(id)
   
   reactableOutput(ns("table"))
@@ -18,7 +18,7 @@ mod_stock_table_ui <- function(id){
 #' stock_act Server Functions
 #'
 #' @noRd
-mod_stock_table_server <- function(id){
+mod_besoins_csb_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     
@@ -56,7 +56,7 @@ mod_stock_table_server <- function(id){
   })
 }
 
-stock_table_demo <- function(){
+besoins_csb_demo <- function(){
   #source functions
   source("R/utils_stock_act.R")
   #declare packages
@@ -68,13 +68,13 @@ stock_table_demo <- function(){
   library(reactable)
   
   ui <- fluidPage(
-    mod_stock_table_ui("act1")
+    mod_besoins_csb_ui("act1")
   )
   server <- function(input, output, session){
     
-    mod_stock_table_server("act1")
+    mod_besoins_csb_server("act1")
   }
   shinyApp(ui, server)
 }
 
-# stock_table_demo()
+besoins_csb_demo()

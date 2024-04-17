@@ -12,13 +12,13 @@ create_community_barplot <- function(table_raw, communeSelect,
       select(-date) %>%
       tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%
       select(Commune, Fokontany, Mois = month_year, "Cas Total" = mal_case_total, 
-             "Nombre de cas prévu pour être traités au CSB" = mal_case_csb, 
-             "Nombre de cas prévu restant au niveau communautaire" = mal_case_chc) %>%
+             "Nombre de cas prévus pour être traités au CSB" = mal_case_csb, 
+             "Nombre de cas prévus restant au niveau communautaire" = mal_case_chc) %>%
       #fake a selection
       filter(Mois == Mois[1]) %>%
       filter(Commune == sample(Commune,1)) %>%
-      tidyr::pivot_longer(c("Nombre de cas prévu pour être traités au CSB", 
-                            "Nombre de cas prévu restant au niveau communautaire"),
+      tidyr::pivot_longer(c("Nombre de cas prévus pour être traités au CSB", 
+                            "Nombre de cas prévus restant au niveau communautaire"),
                           names_to = "variable",
                           values_to = "value")
   }
@@ -27,8 +27,8 @@ create_community_barplot <- function(table_raw, communeSelect,
     filter(is.null(communeSelect) | Commune %in% toupper(communeSelect),
            is.null(fokontanySelect) | Fokontany %in% toupper(fokontanySelect),
            Mois == monthSelect) %>%
-    tidyr::pivot_longer(c("Nombre de cas prévu pour être traités au CSB", 
-                          "Nombre de cas prévu restant au niveau communautaire"),
+    tidyr::pivot_longer(c("Nombre de cas prévus pour être traités au CSB", 
+                          "Nombre de cas prévus restant au niveau communautaire"),
                         names_to = "variable",
                         values_to = "value")
   

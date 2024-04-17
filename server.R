@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-#declare pacakges
+#declare packages
 require(shiny)
 require(shinyWidgets)
 require(shinydashboard)
@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
   #landing page map
   mod_landing_map_server("land_map")
   #data table server
-  mod_data_explore_server("fokontany_table")
+  mod_tableau_donnees_server("fokontany_table")
   #community health server
   # mod_sante_comm_server("comm1")
   # mod_fktselect_server("comm1")
@@ -40,12 +40,12 @@ shinyServer(function(input, output) {
   # mod_sante_primaire_server("commune")
   
   #community cases server
-  mod_chc_table_server("chc_cases")
+  mod_chc_besoins_server("chc_cases")
   
   #stockout barchart module
-  mod_stock_act_server("act1")
+  # mod_stock_act_server("act1")
   
   #stockout table module
-  mod_stock_table_server("act_table")
+  mod_besoins_csb_server("act_table")
 
 })

@@ -10,7 +10,7 @@
 #' @importFrom tidyr separate
 #' @importFrom DT formatStyle formatRound
 
-mod_data_explore_ui <- function(id){
+mod_tableau_donnees_ui <- function(id){
   ns <- NS(id)
   
   fluidRow(
@@ -46,7 +46,7 @@ mod_data_explore_ui <- function(id){
 }
 
 
-mod_data_explore_server <- function(id){
+mod_tableau_donnees_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     
@@ -116,7 +116,7 @@ mod_data_explore_server <- function(id){
   }) #end moduleServer
 }
 
-data_explore_demo <- function(){
+tableau_donnees_demo <- function(){
   #source functions
   source("R/utils_sante_comm.R")
   #declare packages
@@ -127,11 +127,11 @@ data_explore_demo <- function(){
   library(DT)
   
   ui <- fluidPage(
-    mod_data_explore_ui("test1")
+    mod_tableau_donnees_ui("test1")
   )
   
   server <- function(input,output,session){
-    mod_data_explore_server("test1")
+    mod_tableau_donnees_server("test1")
     
   }
   
@@ -139,4 +139,4 @@ data_explore_demo <- function(){
   
 }
 
-data_explore_demo()
+tableau_donnees_demo()

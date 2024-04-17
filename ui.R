@@ -164,7 +164,7 @@ tagList(
           ), #end landing page tab
           ## Data Table Tab ---------------------
           tabItem(tabName = "fokontany_table",
-                  mod_data_explore_ui("fokontany_table")),
+                  mod_tableau_donnees_ui("fokontany_table")),
           ## CHC Case Tab ------------------------
           tabItem(tabName = "chc_cases",
                   #intro and instruction
@@ -174,7 +174,7 @@ tagList(
                                collapsible = TRUE,
                                collapsed = FALSE,
                                width = 12)),
-                  mod_chc_table_ui("chc_cases")),
+                  mod_chc_besoins_ui("chc_cases")),
           
           ## stockout tab ------------------
           tabItem(tabName = "stock_csb2",
@@ -186,7 +186,7 @@ tagList(
                                collapsed = TRUE,
                                width = 12)),
                   #bar chart of ACTs
-                  mod_stock_table_ui("act_table")),
+                  mod_besoins_csb_ui("act_table")),
           ## about the model page ------------------
           tabItem(tabName = 'about',
                   includeMarkdown("assets/home.md")
