@@ -55,7 +55,7 @@ The repo can be installed via cloning. The required R packages can be installed 
 
 ```
 sudo su - \
-        -c "R -e \"install.packages(c('shiny', 'leaflet', 'lubridate', 'dplyr', 'attempt', 'DT', 'glue', 'golem', 'htmltools', 'pkgload', 'plotly', 'scales', 'sf', 'shinyWidgets', 'stringr', 'tidyr', 'rmarkdown', 'reactable'), repos='http://cran.rstudio.com/')\""
+        -c "R -e \"install.packages(c('shiny', 'leaflet', 'lubridate', 'dplyr', 'attempt', 'DT', 'glue', 'golem', 'htmltools', 'pkgload', 'plotly', 'scales', 'sf', 'shinyWidgets', 'stringr', 'tidyr', 'rmarkdown', 'reactable', 'shinydashboard, 'shinydashboardPlus'), repos='http://cran.rstudio.com/')\""
 ```
 
 ## Usage
@@ -87,7 +87,7 @@ If both repos are in the same parent directory, the following code will copy the
 
 `cp -rv ../smaller-backend/output/. data/dynamic`
 
-### Updating the data on AWS server via gilab commits
+### Updating the data on AWS server via gitlab commits
 
 1. Log-into server. Shiny app is located at `/srv/shiny-server/smaller`
 2. Pull changes into this github repo
