@@ -10,8 +10,8 @@
 #flash dash from dynamic output
 flash_list <- readRDS("data/dynamic/flash-alerts.rds")
 #set new end date [should be provided as an object from backend]
-# new_end <- readRDS("data/dynamic/new_end.rds")
-new_end <- as.Date("2024-05-01")
+new_end <- readRDS("data/dynamic/new_end.rds")
+# new_end <- as.Date("2024-05-01")
 #update year comparison
 if(flash_list$compare_ratio>=100){
   year_comparison <- paste0("+", flash_list$compare_ratio-100, "%")
