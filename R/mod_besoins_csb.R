@@ -77,4 +77,4 @@ besoins_csb_demo <- function(){
   shinyApp(ui, server)
 }
 
-besoins_csb_demo()
+# besoins_csb_demo()
