@@ -24,10 +24,10 @@ timeseries_comm <- function(communeSelect,
   #create plot title and dataset subset
     p.title <- paste0(stringr::str_to_title(communeSelect), ": ",
                       stringr::str_to_title(fktSelect))
-    plot_data <- readRDS("data/dynamic/inc-fokontany.rds")
-    # plot_data <- read.csv("data/dynamic/inc-fokontany.csv") %>%
-    #   mutate(date = as.Date(date)) %>%
-    #   mutate(month_lab = factor(month_lab, levels = month.abb))
+    # plot_data <- readRDS("data/dynamic/inc-fokontany.rds")
+    plot_data <- read.csv("data/dynamic/inc-fokontany.csv") %>%
+      mutate(date = as.Date(date)) %>%
+      mutate(month_lab = factor(month_lab, levels = month.abb))
     plot_data <- plot_data %>%
       filter(comm_fkt %in% toupper(paste(communeSelect, fktSelect, sep = "_")))
 
