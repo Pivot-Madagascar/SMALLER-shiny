@@ -58,7 +58,8 @@ mod_chc_besoins_server <- function(id){
     ns <- session$ns
     
     #full table of table (read once)
-    table_raw <- readRDS("data/dynamic/CHW_cases.rds") %>%
+    table_raw <- read.csv("data/dynamic/CHW_cases.csv") %>%
+      dplyr::mutate(date = as.Date(date)) %>%
       dplyr::mutate(month_year = paste(month.abb[lubridate::month(date)], 
                                 lubridate::year(date), sep = " ")) %>%
       select(-date) %>%

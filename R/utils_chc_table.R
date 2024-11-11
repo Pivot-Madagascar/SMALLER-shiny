@@ -6,8 +6,9 @@ create_community_barplot <- function(table_raw, communeSelect,
   
   inspect <- FALSE
   if(inspect){
-    plotly_data <- readRDS("data/dynamic/CHW_cases.rds") %>%
-      mutate(month_year = paste(month.abb[lubridate::month(date)], 
+    plotly_data <- read.csv("data/dynamic/CHW_cases.csv") %>%
+      dplyr::mutate(date = as.Date(date)) %>%
+      dplyr::mutate(month_year = paste(month.abb[lubridate::month(date)], 
                                 lubridate::year(date), sep = " ")) %>%
       select(-date) %>%
       tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%

@@ -22,12 +22,13 @@ mod_besoins_csb_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     
-    stock_table <- readRDS("data/dynamic/stockout-table.rds") 
+    stock_table <- read.csv("data/dynamic/stockout-table.csv") 
     
     predict_header <- paste0("Prédictions ", stock_table$month_year[1])
     stock_table <- dplyr::select(stock_table, -month_year, -date_period) %>%
       dplyr::rename("Nombre de cas total" = case_total,
              "Nombre de cas prises en charge aux CSB" = case_csb)
+    colnames(stock_table) <- gsub("\\.", " ", colnames(stock_table)) #for periods in csv names
     #create DT datable
     # sketch <- htmltools::withTags(table(
     #   class = 'display',

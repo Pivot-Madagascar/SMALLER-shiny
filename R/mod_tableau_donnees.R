@@ -51,7 +51,8 @@ mod_tableau_donnees_server <- function(id){
     ns <- session$ns
     
     #full table of data
-    table_data <- readRDS("data/dynamic/inc-fokontany.rds") %>%
+    table_data <- read.csv("data/dynamic/inc-fokontany.csv") %>%
+      mutate(date = as.Date(date)) %>%
       select(-pop, -hist_year, -season, -month_lab) %>%
       #adjust error in cases
       mutate(case_med = ifelse(!is.na(case_true), case_true, case_med)) %>%
