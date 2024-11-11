@@ -66,7 +66,7 @@ mod_landing_map_server <- function(id){
     new_end <- readRDS("data/dynamic/new_end.rds")
     
     #create map, data is already provided at correct date
-    map_data <- readRDS("data/dynamic/inc_map_popup.rds") %>%
+    map_data <- st_read("data/dynamic/inc_map_popup.gpkg") %>%
       #drop NAs
       filter(!(is.na(median)))
 
