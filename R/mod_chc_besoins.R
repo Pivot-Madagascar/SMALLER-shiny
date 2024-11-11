@@ -59,7 +59,7 @@ mod_chc_besoins_server <- function(id){
     
     #full table of table (read once)
     table_raw <- readRDS("data/dynamic/CHW_cases.rds") %>%
-      mutate(month_year = paste(month.abb[lubridate::month(date)], 
+      dplyr::mutate(month_year = paste(month.abb[lubridate::month(date)], 
                                 lubridate::year(date), sep = " ")) %>%
       select(-date) %>%
       tidyr::separate(comm_fkt, into = c("Commune", "Fokontany"), sep = "_") %>%
@@ -155,4 +155,4 @@ chc_besoins_demo <- function(){
   
 }
 
-chc_besoins_demo()
+# chc_besoins_demo()
