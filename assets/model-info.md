@@ -1,6 +1,6 @@
 ## À propos du modèle
 
-Les prédictions visualisées sur cette application ont été créées par un modèle géostatistique. Ce modèle combine les données du système de santé et les données écologiques obtenues par télédétection pour prédire le taux du paludisme en fonction des variables socio-écologiques. Les spécifications du modèle sont rapportées dans Evans et al. (*in prep*).
+Les prédictions visualisées sur cette application ont été créées par un modèle géostatistique. Ce modèle combine les données du système de santé et les données écologiques obtenues par télédétection pour prédire le taux du paludisme en fonction des variables socio-écologiques. Les spécifications du modèle sont rapportées dans [Evans et al. 2025](https://doi.org/10.1186/s12936-025-05266-0).
 
 <p style="text-align:center;"><img src="model-workflow.png" alt="Modeling Workflow" width="600px"></p>
 
