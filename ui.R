@@ -12,12 +12,27 @@ flash_list <- readRDS("data/dynamic/flash-alerts.rds")
 #set new end date [should be provided as an object from backend]
 new_end <- readRDS("data/dynamic/new_end.rds")
 # new_end <- as.Date("2024-05-01")
-#update year comparison
-if(flash_list$compare_ratio>=100){
-  year_comparison <- paste0("+", flash_list$compare_ratio-100, "%")
-} else {
-  year_comparison <- paste0("-", 100-flash_list$compare_ratio, "%")
+
+#adjust for missing data
+if(is.na(flash_list$flash_inc)){
+  flash_list$flash_inc <- "--"
 }
+
+if(is.na(flash_list$compare_ratio)){
+  flash_list$compare_ratio <- "--"
+}
+
+#update year comparison
+if(is.numeric(flash_list$compare_ratio)){
+  if(flash_list$compare_ratio>=100){
+    year_comparison <- paste0("+", flash_list$compare_ratio-100, "%")
+  } else {
+    year_comparison <- paste0("-", 100-flash_list$compare_ratio, "%")
+  }
+} else {
+  year_comparison <- "--"
+}
+
 
 chc_months_avail <- seq.Date((new_end %m+% months(1)),
                                           (new_end %m+% months(3)), 
