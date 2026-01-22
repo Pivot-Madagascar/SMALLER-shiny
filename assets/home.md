@@ -14,18 +14,16 @@ La barre de navigation à gauche contient des pages présentant différents type
 
 - **Besoins aux CSBs**: Cette page fournit des informations sur les besoins de médicaments antipaludiques passés et prévus sous la forme de polythérapies à base d'artémisinine (ACT) au niveau du CSB. Ces informations ne sont actuellement disponibles que pour les CSB2.
 
-### Futurs mises à jours
+### Mises à Jours
 
-Cette application est toujours en développement et nous planifions de faire plusieurs mises à jour dans les mois à venir:
-
-- option de catégoriser par classe d'âge (<5 ans, 5- 14 ans, 15+ ans)
-- intégration des données des agents communautaires
-
-Vous pouvez soumettre vos besoins par [mail](mailto:mv.evans.phd@gmail.com) ou dans notre repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny).
+- **22 Jan 2026**: Depuis janvier 2026, le modèle utilise les données de température d'ERA5 au lieu de MODIS et CFSv2 en raison du manque de disponibilité des données CFSv2 sur Google Earth Engine.
+- **10 Mars 2025**: Le modèle maintenant prend en compte la distribution des moustiquaires qui a eu lieu en octobre 2024.
+- **11 Nov 2024**: L'estimation des cas venant aux formations sanitaires a été mis à jour avec les données jusqu'à septembre 2024.
+- **8 Oct 2024**: Les données d'entrainement sont maintenant à jour jusqu'à septembre 2024.
 
 ### Contactez-nous
 
-Avez-vous des questions ou des suggestions? N'hesitez-pas de nous contacter [par mail](mailto:mv.evans.phd@gmail.com).
+Avez-vous des questions ou des suggestions? N'hesitez-pas de nous contacter [par mail](mailto:mv.evans.phd@gmail.com) ou par notre repo [gitlab](https://gitlab.com/pivot-sci-apps/smaller-shiny)..
 
 ### Code source
 
