@@ -62,6 +62,11 @@ tagList(
   # Your application UI logic
   #newer font awesome version
   tags$style("@import url(https://use.fontawesome.com/releases/v6.4.0/css/all.css);"),
+  tags$style(HTML("
+    #customBox {
+        border: 3px solid gray;
+    }
+  ")),
   fluidPage(
     dashboardPage(title = "SMALLER Dashboard",
      
@@ -100,6 +105,8 @@ tagList(
                                             icon = icon("people-roof", lib = "font-awesome")),
                                    menuItem("Besoins aux CSB", tabName = "stock_csb2",
                                             icon = icon("hospital", lib = "font-awesome")),
+                                   menuItem("Interventions", tabName = "interventions",
+                                            icon = icon("handshake", lib = "font-awesome")),
                                    menuItem("À propos", icon = icon("circle-info", lib = "font-awesome"),
                                             menuSubItem("L'application", tabName = "about"),
                                             menuSubItem("Le modèle", tabName = "model_info"))
@@ -167,16 +174,6 @@ tagList(
                            mod_map_panel_ui("land_map")
                            )
                   ) #end fluidRow
-                   
-                  
-                  
-
-                  #   absolutePanel(class = "panel panel-default", fixed = TRUE, draggable = TRUE, 
-                  #               top = "auto", left = "auto", right = 40, bottom = 60,
-                  #               width = 300, height = "auto",
-                  #               
-                  #               h2("Select a fokontany"))
-                  # )
           ), #end landing page tab
           ## Data Table Tab ---------------------
           tabItem(tabName = "fokontany_table",
@@ -185,7 +182,7 @@ tagList(
           tabItem(tabName = "chc_cases",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Nombre de cas prévus restant au niveau communautaire",
+                               title = h3("Nombre de cas prévus restant au niveau communautaire"),
                                includeMarkdown("assets/community-cases.md"),
                                collapsible = TRUE,
                                collapsed = FALSE,
@@ -196,13 +193,23 @@ tagList(
           tabItem(tabName = "stock_csb2",
                   #intro and instruction
                   fluidRow(box(status = "info",
-                               title = "Besoins des ACTs prévus aux CSB",
+                               title = h3("Besoins des ACTs prévus aux CSB"),
                                includeMarkdown("assets/stock-act-csb2.md"),
                                collapsible = TRUE,
-                               collapsed = TRUE,
+                               collapsed = FALSE,
                                width = 12)),
                   #bar chart of ACTs
                   mod_besoins_csb_ui("act_table")),
+          ## interventions tab ---------------------
+          tabItem(tabName = "interventions",
+                  fluidRow(box(status = "info",
+                               title = h3("Comparaisons des Interventions Ciblé"),
+                               includeMarkdown("assets/interventions.md"),
+                               collapsible = TRUE,
+                               collapsed = FALSE,
+                               width = 12)),
+                  h4("Cette page est en cours de construction."),
+                  mod_interventions_ui("model_scenarios")),
           ## about the model page ------------------
           tabItem(tabName = 'about',
                   includeMarkdown("assets/home.md")

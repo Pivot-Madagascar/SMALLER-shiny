@@ -24,6 +24,8 @@ require(ggplot2)
 require(sf)
 require(fontawesome)
 library(reactable)
+library(paletteer)
+library(bslib)
 
 # Define server logic
 shinyServer(function(input, output) {
@@ -47,5 +49,8 @@ shinyServer(function(input, output) {
   
   #stockout table module
   mod_besoins_csb_server("act_table")
+  
+  #interventions modeul
+  mod_interventions_server("model_scenarios")
 
 })
