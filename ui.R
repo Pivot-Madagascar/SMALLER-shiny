@@ -208,7 +208,6 @@ tagList(
                                collapsible = TRUE,
                                collapsed = FALSE,
                                width = 12)),
-                  h4("Cette page est en cours de construction."),
                   mod_interventions_ui("model_scenarios")),
           ## about the model page ------------------
           tabItem(tabName = 'about',
