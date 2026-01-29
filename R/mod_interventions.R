@@ -272,7 +272,6 @@ mod_interventions_server <- function(id){
              "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
       )
       
-      req(selected_patch1())
       create_plot(data_subset = subset1(),
                   selected_patch = selected_patch1())
     })
