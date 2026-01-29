@@ -14,6 +14,7 @@ mod_tableau_donnees_ui <- function(id){
   ns <- NS(id)
   
   fluidRow(
+    h3("  Tableau des données"),
     column(3,
            #commune selection
            selectInput(ns("commune"), label = "Choix du commune(s):",
@@ -126,6 +127,7 @@ tableau_donnees_demo <- function(){
   library(lubridate)
   library(stringr)
   library(DT)
+  library(tidyr)
   
   ui <- fluidPage(
     mod_tableau_donnees_ui("test1")

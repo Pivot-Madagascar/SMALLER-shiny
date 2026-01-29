@@ -35,10 +35,3 @@ En générale, notre modèle reproduit bien les dynamics du paludisme dans le di
 Notre estimation du nombre de cas ressemble également au nombre "réel" de cas observés dans les CSB.
 
 <p style="text-align:center;"><img src="validation-case.png" width="600px"></p>
-
-### Mises à Jours
-
-- **22 Jan 2025**: Depuis janvier 2026, le modèle utilise les données de température d'ERA5 au lieu de MODIS et CFSv2 en raison du manque de disponibilité des données CFSv2 sur Google Earth Engine.
-- **10 Mars 2025**: Le modèle maintenant prend en compte la distribution des moustiquaires qui a eu lieu en octobre 2024.
-- **11 Nov 2024**: L'estimation des cas venant aux formations sanitaires a été mis à jour avec les données jusqu'à septembre 2024.
-- **8 Oct 2024**: Les données d'entrainement sont maintenant à jour jusqu'à septembre 2024.
