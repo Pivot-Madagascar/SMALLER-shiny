@@ -66,7 +66,6 @@ mod_interventions_server <- function(id){
     
     fkt_poly <- sf::st_read("data/for-app/interventions/ifd_fokontany_prep.gpkg") 
     
-    # Reactive value to store selected patch
     selected_patch1 <- reactiveVal(FALSE)
     selected_patch2 <- reactiveVal(FALSE)
     
@@ -208,10 +207,14 @@ mod_interventions_server <- function(id){
     
     create_plot <- function(data_subset, selected_patch){
       
-      validate(
-        need(selected_patch, 
-             "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
-      )
+      # validate(
+      #   need(selected_patch,
+      #        "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
+      # )
+      
+      # if(is.null(selected_patch)){
+      #   return("Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
+      # }
       
       plot_data <- bind_rows(data_subset,
                              filter(filter(df_age_case(),
@@ -264,11 +267,22 @@ mod_interventions_server <- function(id){
     }
     
     output$plot1 <- renderPlot({
+      validate(
+        need(selected_patch1(),
+             "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
+      )
+      
+      req(selected_patch1())
       create_plot(data_subset = subset1(),
                   selected_patch = selected_patch1())
     })
     
     output$plot2 <- renderPlot({
+      validate(
+        need(selected_patch2(),
+             "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
+      )
+      
       create_plot(data_subset = subset2(),
                   selected_patch = selected_patch2())
     })
