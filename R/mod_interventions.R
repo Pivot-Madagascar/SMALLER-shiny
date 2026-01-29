@@ -286,6 +286,7 @@ mod_interventions_server <- function(id){
       
       create_plot(data_subset = subset2(),
                   selected_patch = selected_patch2())
+    
     })
   }) #end moduleServer
 }
