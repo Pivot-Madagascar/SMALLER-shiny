@@ -67,8 +67,8 @@ mod_interventions_server <- function(id){
     fkt_poly <- sf::st_read("data/for-app/interventions/ifd_fokontany_prep.gpkg") 
     
     # Reactive value to store selected patch
-    selected_patch1 <- reactiveVal(NULL)
-    selected_patch2 <- reactiveVal(NULL)
+    selected_patch1 <- reactiveVal(FALSE)
+    selected_patch2 <- reactiveVal(FALSE)
     
     observeEvent(input$map1_shape_click, {
       selected_patch1(input$map1_shape_click$id)
@@ -207,6 +207,12 @@ mod_interventions_server <- function(id){
                        intervention = "propT_llin_irs")
     
     create_plot <- function(data_subset, selected_patch){
+      
+      validate(
+        need(selected_patch, 
+             "Cliquez sur un fokontany sur la carte à gauche pour voir sa série temporelle.")
+      )
+      
       plot_data <- bind_rows(data_subset,
                              filter(filter(df_age_case(),
                                            target == "none",
@@ -258,19 +264,11 @@ mod_interventions_server <- function(id){
     }
     
     output$plot1 <- renderPlot({
-      validate(
-        need(selected_patch1(), 
-             "Cliquez sur un fokontany sur la carte à gauche pour voir sa serie temporelle.")
-      )
       create_plot(data_subset = subset1(),
                   selected_patch = selected_patch1())
     })
     
     output$plot2 <- renderPlot({
-      validate(
-        need(selected_patch2(), 
-             "Cliquez sur un fokontany sur la carte à gauche pour voir sa serie temporelle.")
-      )
       create_plot(data_subset = subset2(),
                   selected_patch = selected_patch2())
     })

@@ -203,7 +203,7 @@ tagList(
           ## interventions tab ---------------------
           tabItem(tabName = "interventions",
                   fluidRow(box(status = "info",
-                               title = h3("Comparaisons des Interventions Ciblé"),
+                               title = h3("Comparaisons des Interventions Ciblées"),
                                includeMarkdown("assets/interventions.md"),
                                collapsible = TRUE,
                                collapsed = FALSE,
